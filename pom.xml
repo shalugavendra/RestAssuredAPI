@@ -9,7 +9,10 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.19</aspectj.version>
-    </properties>
+        <json.version>20230227</json.version>
+        <allure.results.directory>target/allure-results_${timestamp}</allure.results.directory>
+        <allure.report.directory>target/allure-results_${timestamp}/allure-report</allure.report.directory>
+ </properties>
 
     <build>
         <pluginManagement>
@@ -20,9 +23,7 @@
                     <version>3.0.0</version>
                     <configuration>
 						<testFailureIgnore>true</testFailureIgnore>
-						<argLine>
-							-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.7/aspectjweaver-1.9.7.jar
-						</argLine>
+						
                         <suiteXmlFiles>
                             <suiteXmlFile>testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
@@ -33,6 +34,62 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.11.0</version>
                 </plugin>
+                <!-- Post-Man plugin -->
+		 <plugin>
+			<groupId>ch.fortysix</groupId>
+			<artifactId>maven-postman-plugin</artifactId>
+			<executions>
+				<execution>
+				
+				<id>send a mail</id>
+				<phase>test</phase>
+				<goals>
+				<goal>send-mail</goal>
+				</goals>
+				<inherited>true</inherited>
+				
+				<configuration>
+					<!-- From Email address -->
+					<from>shalugavendra@gmail.com</from>
+					
+					<!--  Email subject -->
+					<subject>Test Automation Report</subject>
+					
+					<!-- Fail the build if the mail doesnt reach -->
+					<failonerror>true</failonerror>
+					
+					<!-- host -->
+					<mailhost>smtp.gmail.com</mailhost>
+					<!-- port of the host -->
+					<mailport>465</mailport>
+					<mailssl>true</mailssl>
+					<mailAltConfig>true</mailAltConfig>
+					
+					<!-- Email Authentication(USername and Password) -->
+					<mailuser>shalugavendra@mail.com</mailuser>
+					<mailpassword>Shalu@1990</mailpassword>
+					
+					<receivers>
+						<!-- To Email address -->
+						<receiver>thegavendrathakur@gmail.com</receiver>
+					</receivers>
+					
+					<fileSets>
+					<fileSet>
+						<!-- Report directory Path -->
+						<directory>E:\Java\RestAssuredAPI\reports</directory>
+						<includes>
+							<!-- Report file name -->
+							<include>Test-Report-yyyy.mm.dd.hh.mm.ss.html</include>
+						</includes>
+						<!-- Use Regular Expressions like **/*.html if you want all the html files to send-->
+						</fileSet>
+					</fileSets>				
+				
+				</configuration>
+				</execution>
+			</executions>
+		</plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -44,6 +101,13 @@
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.0.9</version>
+</dependency>
+
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -51,7 +115,6 @@
             <version>2.15.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -79,11 +142,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.7.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20230227</version>
         </dependency>
         <dependency>
             <groupId>com.github.fge</groupId>
@@ -138,11 +196,21 @@
     		<artifactId>allure-maven</artifactId>
     		<version>2.12.0</version>
     	</dependency>
-        <dependency>
-    		<groupId>com.aventstack</groupId>
-    		<artifactId>extentreports</artifactId>
-    		<version>5.0.9</version>
-		</dependency>
+    	<!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-maven-plugin -->
+<dependency>
+    <groupId>ru.yandex.qatools.allure</groupId>
+    <artifactId>allure-maven-plugin</artifactId>
+    <version>2.5</version>
+</dependency>
+
+        
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+		<dependency>
+       		<groupId>org.json</groupId>
+       		<artifactId>json</artifactId>
+       		<version>20230227</version>
+    	</dependency>
+
     </dependencies>
     
      
