@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build:
     name: Run Tests
     runs-on: ubuntu-latest
 
