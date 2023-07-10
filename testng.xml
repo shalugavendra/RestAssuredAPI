@@ -6,11 +6,12 @@
 		<listener class-name="api.utilities.ExtentReportManager">
 			
 		</listener>
-	</listeners>
+	</listeners> 
 	
   <test thread-count="5" name="PetTests">
     <classes>
       <class name="api.tests.TestCases"/>
+      <class name="api.tests.TestCases2"/>
     </classes>
   </test> <!-- PetTests -->
 </suite> <!-- PetSuite -->

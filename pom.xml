@@ -101,32 +101,8 @@
    			<version>1.18.24</version>
     		<scope>provided</scope>
 		</dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.20.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <version>2.21.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
-		<dependency>
-    		<groupId>io.qameta.allure</groupId>
-    		<artifactId>allure-maven</artifactId>
-    		<version>2.12.0</version>
-    	</dependency>
-    	<!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-maven-plugin -->
-<dependency>
-    <groupId>ru.yandex.qatools.allure</groupId>
-    <artifactId>allure-maven-plugin</artifactId>
-    <version>2.5</version>
-</dependency>
-
         
-		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+       
 		<dependency>
        		<groupId>org.json</groupId>
        		<artifactId>json</artifactId>
@@ -149,62 +125,7 @@
     <version>3.4.0</version>
 				</plugin>                
                 <!-- Post-Man plugin -->
-		 <plugin>
-			<groupId>ch.fortysix</groupId>
-			<artifactId>maven-postman-plugin</artifactId>
-			    <version>0.1.6</version>
-			<executions>
-				<execution>
-				
-				<id>send a mail</id>
-				<phase>test</phase>
-				<goals>
-				<goal>send-mail</goal>
-				</goals>
-				<inherited>true</inherited>
-				
-				<configuration>
-					<!-- From Email address -->
-					<from>shalugavendra@gmail.com</from>
-					
-					<!--  Email subject -->
-					<subject>Test Automation Report</subject>
-					
-					<!-- Fail the build if the mail doesnt reach -->
-					<failonerror>true</failonerror>
-					
-					<!-- host -->
-					<mailhost>smtp.gmail.com</mailhost>
-					<!-- port of the host -->
-					<mailport>465</mailport>
-					<mailssl>true</mailssl>
-					<mailAltConfig>true</mailAltConfig>
-					
-					<!-- Email Authentication(USername and Password) -->
-					<mailuser>shalugavendra@mail.com</mailuser>
-					<mailpassword>shalu@1990</mailpassword>
-					
-					<receivers>
-						<!-- To Email address -->
-						<receiver>thegavendrathakur@gmail.com</receiver>
-					</receivers>
-					
-					<fileSets>
-					<fileSet>
-						<!-- Report directory Path -->
-						<directory>E:\Java\RestAssuredAPI\target\surefire-reports</directory>
-						<includes>
-							<!-- Report file name -->
-							<include>emailable-report.html</include>
-						</includes>
-						<!-- Use Regular Expressions like **/*.html if you want all the html files to send-->
-						</fileSet>
-					</fileSets>				
-				
-				</configuration>
-				</execution>
-			</executions>
-		</plugin>
+		 
 		<plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -230,7 +151,7 @@
 						</goals>
 						<configuration>
 							<classpathScope>test</classpathScope>
-							<mainClass>com.aucdt.edu.util.JavaMailSending</mainClass>
+							<mainClass>com.utilities.JavaMailSending</mainClass>
 						</configuration>
 					</execution>
 				</executions>

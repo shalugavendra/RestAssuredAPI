@@ -13,8 +13,15 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import api.methods.ApiMethods;
 import io.restassured.response.Response;
 
-public class TestCases {
+public class TestCases2 {
 	
+	ExtentReports extent = new ExtentReports();
+	ExtentSparkReporter spark = new ExtentSparkReporter("target/spark.html");
+	
+	@BeforeTest
+	public void beforetest() {
+		extent.attachReporter(spark);
+	}
 	
 	@Test(priority=1)
 	public void testGetUser() {
@@ -26,4 +33,9 @@ public class TestCases {
 
 	}
 	
+	@AfterTest
+	public void aftertest() {
+		extent.flush();
+	}
+
 }
