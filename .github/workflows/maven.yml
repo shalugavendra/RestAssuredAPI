@@ -35,11 +35,11 @@ jobs:
     - name: Run Tests with Maven
       run: mvn test
       
-    - name: Output the run Details
-      uses: actions/upload-artifact@v2
-      with:
-          name: RunReports
-          path: Test-Reports.html
+#    - name: Output the run Details
+#      uses: actions/upload-artifact@v2
+#      with:
+#          name: RunReports
+ #         path: Test-Reports.html
           
    
 
@@ -67,7 +67,7 @@ jobs:
           # comma-separated string, send email to
           to: thegavendrathakur@gmail.com
           # Optional attachments:
-          attachments: reports/Test-Report-yyyy.mm.dd.hh.mm.ss.html
+          attachments: Test-Report.html
           # from email name
           from: Gavendra Singh
         
