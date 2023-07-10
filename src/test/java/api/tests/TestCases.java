@@ -1,6 +1,9 @@
 package api.tests;
 
+import java.io.FileNotFoundException;
+
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import api.methods.ApiMethods;
