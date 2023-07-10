@@ -34,12 +34,14 @@ jobs:
       run: mvn clean install
     - name: Run Tests with Maven
       run: mvn test
+    - name: list the current directory
+      run: ls -a
       
-#    - name: Output the run Details
-#      uses: actions/upload-artifact@v2
-#      with:
-#          name: RunReports
- #         path: Test-Reports.html
+    - name: Output the run Details
+      uses: actions/upload-artifact@v2
+      with:
+          name: RunReports
+          path: Test-Reports.html
           
    
 
