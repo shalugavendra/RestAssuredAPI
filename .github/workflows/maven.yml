@@ -31,6 +31,29 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+    - name: Send mail
+        if: always()
+        uses: dawidd6/action-send-mail@v2
+        with:
+        
+          # mail server settings
+          server_address: smtp.gmail.com
+          server_port: 465
+        
+          # user credentials
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          # email subject
+          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          # email body as text
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          # comma-separated string, send email to
+          to: thegavendrathakur@gmail.com
+          # Optional attachments:
+          attachments: reports/Test-Report-yyyy.mm.dd.hh.mm.ss.html
+          # from email name
+          from: Gavendra Singh
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
   #  - name: Update dependency graph
