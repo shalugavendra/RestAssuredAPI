@@ -10,8 +10,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.19</aspectj.version>
         <json.version>20230227</json.version>
-        <allure.results.directory>target/allure-results_${timestamp}</allure.results.directory>
-        <allure.report.directory>target/allure-results_${timestamp}/allure-report</allure.report.directory>
  </properties>
 
 <dependencies>
@@ -101,6 +99,11 @@
    			<version>1.18.24</version>
     		<scope>provided</scope>
 		</dependency>
+		<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.2.0</version>
+</dependency>
         
        
 		<dependency>
@@ -108,6 +111,11 @@
        		<artifactId>json</artifactId>
        		<version>20230227</version>
     	</dependency>
+    	<dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.20.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -124,7 +132,16 @@
     <artifactId>maven-project-info-reports-plugin</artifactId>
     <version>3.4.0</version>
 				</plugin>                
-                <!-- Post-Man plugin -->
+                <plugin>
+					<groupId>io.qameta.allure</groupId>
+					<artifactId>allure-maven</artifactId>
+					<version>2.10.0</version>
+					<configuration>
+						<reportVersion>2.14.0</reportVersion>
+                    <outputDirectory>${project.basedir}/target/allure-reports/</outputDirectory>
+                    <resultsDirectory>${project.basedir}/target/allure-results</resultsDirectory>
+                </configuration>
+				</plugin>
 		 
 		<plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -138,80 +155,7 @@
                         </suiteXmlFiles>
                     </configuration>                   
                 </plugin>
-                <plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.0.0</version>
-				<executions>
-					<execution>
-						<id>first-execution</id>
-						<phase>install</phase>
-						<goals>
-							<goal>java</goal>
-						</goals>
-						<configuration>
-							<classpathScope>test</classpathScope>
-							<mainClass>com.utilities.JavaMailSending</mainClass>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-			<groupId>ch.fortysix</groupId>
-			<artifactId>maven-postman-plugin</artifactId>
-			    <version>0.1.6</version>
-			<executions>
-				<execution>
-				
-				<id>send a mail</id>
-				<phase>test</phase>
-				<goals>
-				<goal>send-mail</goal>
-				</goals>
-				<inherited>true</inherited>
-				
-				<configuration>
-					<!-- From Email address -->
-					<from>shalugavendra@gmail.com</from>
-					
-					<!--  Email subject -->
-					<subject>Test Automation Report</subject>
-					
-					<!-- Fail the build if the mail doesnt reach -->
-					<failonerror>true</failonerror>
-					
-					<!-- host -->
-					<mailhost>smtp.gmail.com</mailhost>
-					<!-- port of the host -->
-					<mailport>465</mailport>
-					<mailssl>true</mailssl>
-					<mailAltConfig>true</mailAltConfig>
-					
-					<!-- Email Authentication(USername and Password) -->
-					<mailuser>shalugavendra@mail.com</mailuser>
-					<mailpassword>shalu@1990</mailpassword>
-					
-					<receivers>
-						<!-- To Email address -->
-						<receiver>thegavendrathakur@gmail.com</receiver>
-					</receivers>
-					
-					<fileSets>
-					<fileSet>
-						<!-- Report directory Path -->
-						<directory>E:/Java/RestAssuredAPI/</directory>
-						<includes>
-							<!-- Report file name -->
-							<include>**/Test-Report.html</include>
-						</includes>
-						<!-- Use Regular Expressions like **/*.html if you want all the html files to send-->
-						</fileSet>
-					</fileSets>				
-				
-				</configuration>
-				</execution>
-			</executions>
-		</plugin>
+                
             </plugins>
         </pluginManagement>
     </build>
