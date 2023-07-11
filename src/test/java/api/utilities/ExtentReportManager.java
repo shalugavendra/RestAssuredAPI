@@ -70,6 +70,14 @@ public class ExtentReportManager implements ITestListener {
 		test.log(Status.SKIP, result.getThrowable().getMessage());
 
 	}
+	Public static void addToReport(ReportingData data){
+  		ExtentManager.getExteneManager().getTest().fail("URL:");
+  		ExtentManager.getExteneManager().getTest().fail(data.getURL());
+  		ExtentManager.getExteneManager().getTest().fail("payload:");
+  		ExtentManager.getExteneManager().getTest().fail(data.getPayload());
+  		ExtentManager.getExteneManager().getTest().log(Status.INFO,"response");
+  		ExtentManager.getExteneManager().getTest().log(Status.INFO,data.getResponse());
+	}
 	
 	public void onFinish(ITestContext testContext)
 	{
