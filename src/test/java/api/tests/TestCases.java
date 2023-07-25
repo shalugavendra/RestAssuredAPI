@@ -1,6 +1,7 @@
 package api.tests;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -17,7 +18,7 @@ public class TestCases {
 	
 	
 	@Test(priority=1)
-	public void testGetUser() {
+	public void testGetUser() throws IOException {
 		Object logger;
 		Response response = ApiMethods.getuser();
 		response.then().log().all();
