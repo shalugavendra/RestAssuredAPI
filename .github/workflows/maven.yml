@@ -31,9 +31,8 @@ jobs:
         distribution: 'temurin'
       
     - name: Build with Maven
-      run: mvn clean install
-    - name: Run Tests with Maven
-      run: mvn test
+      run: mvn clean test
+
     - name: list the current directory
       run: ls -a
       
